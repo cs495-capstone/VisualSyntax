@@ -81,5 +81,7 @@ public class Teleport_demo : MonoBehaviour {
 			laserPointer.SetPosition (0, Vector3.zero);
 			laserPointer.SetPosition (1, Vector3.zero);
 		}
+
+
 	}
 }
