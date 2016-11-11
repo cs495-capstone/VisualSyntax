@@ -22,7 +22,6 @@ public class DrawLine : MonoBehaviour {
 	/// </summary>
 	void Start () {
 		lineRenderer = GetComponent<LineRenderer> ();
-		lineRenderer.SetPosition (0, origin.position);
 		lineRenderer.SetWidth (0.01f, 0.01f);
 	}
 
@@ -32,6 +31,7 @@ public class DrawLine : MonoBehaviour {
 	/// </summary>
 	void Update () {
 		if (origin != null && destination != null) {
+			lineRenderer.SetPosition (0, origin.position);
 			lineRenderer.SetPosition (1, destination.position);
 		}
 	}
