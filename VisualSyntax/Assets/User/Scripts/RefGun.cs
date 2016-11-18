@@ -10,6 +10,8 @@ public class RefGun : MonoBehaviour {
 	NVRInteractableItem item;
 	LineRenderer lineRenderer_comp;
 
+	bool toggled = false;
+
 	// Use this for initialization
 	void Start () {
 		item = GetComponent<NVRInteractableItem> ();
@@ -21,6 +23,7 @@ public class RefGun : MonoBehaviour {
 		if (item.IsAttached && item.AttachedHand.UseButtonPressed) {
 			updateLaser (item.AttachedHand);
 		} else {
+			toggled = false;
 			disableLaser ();
 		}
 	}
@@ -30,6 +33,12 @@ public class RefGun : MonoBehaviour {
 		Ray outRay = new Ray (transform.position, transform.forward);
 
 		if (Physics.Raycast (outRay, out outHit)) {
+			if (outHit.rigidbody != null && !toggled) {
+				var janice = outHit.rigidbody.gameObject.GetComponent<VroomObject> ();
+				janice.ReferenceMode = !janice.ReferenceMode;
+				toggled = true;
+			}
+
 			// Do something
 			lineRenderer_comp.SetPosition (0, transform.position);
 			lineRenderer_comp.SetPosition (1, outHit.point);

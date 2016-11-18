@@ -136,7 +136,7 @@ public class VroomObject : MonoBehaviour {
 		positions.Add(transform.position);
 		foreach (var child in transform.GetComponentsInChildren<VroomObject>()) {
 			if (!child.TopLevelObject) {
-				child.transform.position += new Vector3(0, i * (size.y / 2), 0);
+				child.transform.position += new Vector3(0, i * (size.y * 1.25f), 0);
 				positions.Add(child.transform.position);
 				child.CreateTextMesh();
 				i++;
