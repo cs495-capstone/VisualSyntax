@@ -129,6 +129,8 @@
      <Compile Include="Assets\User\Scripts\NauseaTest.cs" />
      <Compile Include="Assets\User\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\User\Scripts\RefGun.cs" />
+     <Compile Include="Assets\User\Scripts\SortingPanel.cs" />
+     <Compile Include="Assets\User\Scripts\SortingPanels.cs" />
      <Compile Include="Assets\User\Scripts\Teleport.cs" />
      <Compile Include="Assets\User\Scripts\VroomObject.cs" />
      <Compile Include="Assets\VRTK\Examples\Resources\Scripts\Archery\Arrow.cs" />

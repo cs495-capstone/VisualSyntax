@@ -69,13 +69,11 @@ public class VroomObject : MonoBehaviour {
 		myTextMesh = null;
 
 		linker = GameObject.Find ("ObjectLinker").GetComponent<LineRenderer> ();
-		linker.SetWidth (0.1f, 0.1f);
-		linker.SetColors (Color.green, Color.green);
 
 		sampleTextMesh = GameObject.Find ("SampleTextMesh");
 
 		subObject = transform.Find ("Object");
-		size = subObject.GetComponent<Renderer> ().bounds.size;
+		size = subObject.GetComponentInChildren<MeshRenderer> ().bounds.size;
 
 		if (TopLevelObject) {
 			CreateTextMesh ();
@@ -119,7 +117,7 @@ public class VroomObject : MonoBehaviour {
 	/// <param name="sender">Sender.</param>
 	private void HandleRefModeDeactivate(object sender) {
 		foreach (var child in transform.GetComponentsInChildren<VroomObject>()) {
-			child.transform.position = transform.position;
+			child.GetComponent<MeshRenderer> ().enabled = false;
 			if (!child.TopLevelObject) child.DeleteTextMesh();
 		}
 		linker.SetVertexCount(0);
