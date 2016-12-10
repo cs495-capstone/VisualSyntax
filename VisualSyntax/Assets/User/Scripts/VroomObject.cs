@@ -11,11 +11,6 @@ public class VroomObject : MonoBehaviour {
 	public bool ReferenceMode;
 
 	/// <summary>
-	/// This is the transform object to connect to that controls the position.
-	/// </summary> 
-	public Transform transform;
-
-	/// <summary>
 	/// Top level objects have the label drawn. This is overridden by ReferenceMode -- in reference
 	/// mode all labels are drawn
 	/// </summary>
@@ -61,11 +56,16 @@ public class VroomObject : MonoBehaviour {
 	public event RefModeEventHandler OnReferenceModeActivated;
 	public event RefModeEventHandler OnReferenceModeDeactivated;
 
+	private ArrayList lineRenderers;
+
+	private ArrayList vroomChildren;
 
 	/// <summary>
 	/// Initializes the vroom object and all it's fields and event handlers.
 	/// </summary>
 	void Start () {
+		lineRenderers = new ArrayList ();
+		vroomChildren = new ArrayList ();
 		myTextMesh = null;
 
 		linker = GameObject.Find ("ObjectLinker").GetComponent<LineRenderer> ();
@@ -74,6 +74,14 @@ public class VroomObject : MonoBehaviour {
 
 		subObject = transform.Find ("Object");
 		size = subObject.GetComponentInChildren<MeshRenderer> ().bounds.size;
+
+		foreach (var child in GetComponentsInChildren<VroomObject>()) {
+			vroomChildren.Add (child);
+
+			var tmp = GameObject.Instantiate (linker);
+			tmp.SetVertexCount (2);
+			lineRenderers.Add (tmp);
+		}
 
 		if (TopLevelObject) {
 			CreateTextMesh ();
@@ -89,6 +97,11 @@ public class VroomObject : MonoBehaviour {
 	public void CreateTextMesh() {
 		if (myTextMesh == null) {
 			myTextMesh = GameObject.Instantiate (sampleTextMesh);
+
+			if (!TopLevelObject) {
+				myTextMesh.transform.localScale *= 0.5f;
+			}
+
 			myTextMesh.name = Label + "_Label";
 
 			var text = myTextMesh.GetComponent<TextMesh> ();
@@ -116,11 +129,19 @@ public class VroomObject : MonoBehaviour {
 	/// </summary>
 	/// <param name="sender">Sender.</param>
 	private void HandleRefModeDeactivate(object sender) {
-		foreach (var child in transform.GetComponentsInChildren<VroomObject>()) {
-			child.GetComponent<MeshRenderer> ().enabled = false;
-			if (!child.TopLevelObject) child.DeleteTextMesh();
+		foreach (var childObj in vroomChildren) {
+			var child = (VroomObject)childObj;
+			if (!child.TopLevelObject) {
+				if (child.GetComponentInChildren<MeshRenderer> () != null) {
+					child.GetComponentInChildren<MeshRenderer> ().enabled = false;
+				}
+				child.DeleteTextMesh ();
+				child.transform.position = transform.position;
+			}
 		}
-		linker.SetVertexCount(0);
+		foreach (var linker in lineRenderers) {
+			((LineRenderer)linker).SetVertexCount (0);
+		}
 	}
 
 	/// <summary>
@@ -129,22 +150,20 @@ public class VroomObject : MonoBehaviour {
 	/// </summary>
 	/// <param name="sender">Sender.</param>
 	private void HandleRefModeActivate(object sender) {
-		int i = 1;
-		ArrayList positions = new ArrayList();
-		positions.Add(transform.position);
-		foreach (var child in transform.GetComponentsInChildren<VroomObject>()) {
+		var angle = 180f / (vroomChildren.Count);
+		for (int j = 0; j < vroomChildren.Count; j++) {
+			var child = (VroomObject) vroomChildren [j];
+			var linker = (LineRenderer)lineRenderers [j];
+
+			child.GetComponentInChildren<MeshRenderer> ().enabled = true;
+			linker.SetVertexCount (2);
 			if (!child.TopLevelObject) {
-				child.transform.position += new Vector3(0, i * (size.y * 1.25f), 0);
-				positions.Add(child.transform.position);
+				var cpos = child.gameObject.transform.position;
+				child.gameObject.transform.position = new Vector3 (cpos.x  + Mathf.Cos(j * Mathf.Deg2Rad * angle), cpos.y + 1.5f * Mathf.Sin(j * Mathf.Deg2Rad * angle), cpos.z);
 				child.CreateTextMesh();
-				i++;
+				linker.SetPosition (0, transform.position);
+				linker.SetPosition (1, child.gameObject.transform.position);
 			}
-		}
-		linker.SetVertexCount(positions.Count);
-		Vector3[] vec = new Vector3[positions.Count];
-		positions.CopyTo(vec);
-		for (i = 0; i < vec.Length; i++) {
-			linker.SetPosition(i, vec[i]);
 		}
 	}
 
@@ -166,16 +185,12 @@ public class VroomObject : MonoBehaviour {
 	}
 
 	void UpdateLinkerPositions() {
-		ArrayList positions = new ArrayList();
-		positions.Add(transform.position);
-		foreach (var child in transform.GetComponentsInChildren<VroomObject>()) {
-			positions.Add(child.transform.position);
-		}
-		linker.SetVertexCount(positions.Count);
-		Vector3[] vec = new Vector3[positions.Count];
-		positions.CopyTo(vec);
-		for (int i = 0; i < vec.Length; i++) {
-			linker.SetPosition(i, vec[i]);
+		for (int i = 0; i < vroomChildren.Count; i++) {
+			var child = (VroomObject) vroomChildren [i];
+			var linker = (LineRenderer) lineRenderers [i];
+
+			linker.SetPosition (0, transform.position);
+			linker.SetPosition (1, child.gameObject.transform.position);
 		}
 	}
 }

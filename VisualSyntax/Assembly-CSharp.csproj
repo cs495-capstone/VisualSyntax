@@ -125,10 +125,14 @@
      <Compile Include="Assets\SteamVR\Scripts\SteamVR_Utils.cs" />
      <Compile Include="Assets\User\Scripts\CameraFade.cs" />
      <Compile Include="Assets\User\Scripts\FadeInOut.cs" />
+     <Compile Include="Assets\User\Scripts\IAlgorithm.cs" />
+     <Compile Include="Assets\User\Scripts\ISortListener.cs" />
      <Compile Include="Assets\User\Scripts\LaserPointer.cs" />
      <Compile Include="Assets\User\Scripts\NauseaTest.cs" />
      <Compile Include="Assets\User\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\User\Scripts\RefGun.cs" />
+     <Compile Include="Assets\User\Scripts\SelectionSort.cs" />
+     <Compile Include="Assets\User\Scripts\SortManager.cs" />
      <Compile Include="Assets\User\Scripts\SortingPanel.cs" />
      <Compile Include="Assets\User\Scripts\SortingPanels.cs" />
      <Compile Include="Assets\User\Scripts\Teleport.cs" />
