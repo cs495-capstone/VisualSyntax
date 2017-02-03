@@ -9,14 +9,27 @@ public class Teleport : MonoBehaviour {
 	/// The indicator is an object that holds the location of where a user is looking
 	/// </summary>
 	public GameObject indicator;
-
+	/// <summary>
+	/// This is the cameraRig holding the player
+	/// </summary>
 	public GameObject cameraRig;
-
+	/// <summary>
+	/// The tracked object used to keep track of the controller in this script.
+	/// </summary>
 	SteamVR_TrackedObject trackedObj;
 
+	/// <summary>
+	/// This field checks to see if the user is actively trying to teleport
+	/// </summary>
 	bool teleporting;
 
+	/// <summary>
+	/// This is the laserPointer which is pointing from the users controller to determine new location
+	/// </summary>
 	LineRenderer laserPointer;
+	/// <summary>
+	/// This is where the laser hits
+	/// </summary>
 	private Vector3 hitPos;
 
 
@@ -42,11 +55,10 @@ public class Teleport : MonoBehaviour {
 	/// </summary>
 	void Update () {
 		var device = SteamVR_Controller.Input((int)trackedObj.index);
-
+		//We set teleport true on the first time that the touchpad is hit
 		if (!teleporting && device.GetPressDown (SteamVR_Controller.ButtonMask.Touchpad)) {
 			teleporting = true;
 		}
-
 		if (teleporting) {
 			indicator.GetComponent<MeshRenderer> ().enabled = true;
 			RaycastHit hit;
@@ -71,14 +83,16 @@ public class Teleport : MonoBehaviour {
 				indicator.GetComponent<MeshRenderer> ().enabled = false;
 			}
 		}
-
+		//When user lets go of touchpad the user is teleported 
 		if (teleporting && device.GetPressUp (SteamVR_Controller.ButtonMask.Touchpad)) {
 			var bounds = cameraRig.GetComponent<MeshRenderer> ().bounds;
-			SteamVR_Fade.Start (Color.black, 1f);
+			//No longer working
+			//SteamVR_Fade.Start (Color.black, 1f);
 			cameraRig.transform.position = indicator.transform.position + 
 				new Vector3(0, -bounds.size.y / 2, 0);
-			SteamVR_Fade.Start (Color.clear, 1f);
-
+			//No longer working
+			//SteamVR_Fade.Start (Color.clear, 1f);
+			//Player has been moved so no more teleport
 			teleporting = false;
 			indicator.GetComponent<MeshRenderer> ().enabled = false;
 			laserPointer.SetPosition (0, Vector3.zero);

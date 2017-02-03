@@ -1,0 +1,93 @@
+using UnityEngine;
+using System.Collections;
+/// <summary>
+/// This class is responsible for managing the progress of a sorting algorithm.
+/// </summary>
+public class SortingManager {
+	/// <summary>
+	/// This is the list at it's initial state before user begins acting on it.
+	/// </summary>
+	private object[] originalList;
+	/// <summary>
+	/// This is the list at it's last successful iteration of the sorting method chosen.
+	/// </summary>
+	private object[] currentList;
+	/// <summary>
+	/// This is the state of the list after the next step of the chosen sort.
+	/// </summary>
+	private object[] nextList;
+	/// <summary>
+	/// This is the algorithm the SortManager will call to figure out the next step.
+	/// </summary>
+    private IAlgorithm currentAlgorithm;
+	/// <summary>
+	/// This is the state that the users list in the Unity world is in.
+	/// </summary>
+	private object[] unityArrayList;
+
+	/// <summary>
+	/// Initializes a new instance of the <see cref="SortManager"/> class.
+	/// </summary>
+	/// <param name="unityList">Unity list to monitor.</param>
+	/// <param name="currentAlgorithm">Current algorithm used to sort.</param>
+	public SortManager(object[] unityList, IAlgorithm currentAlgorithm) {
+        this.unityArrayList = unityList;
+        this.originalList = unityList;
+        this.currentAlgorithm = currentAlgorithm;
+        this.currentList = this.originalList;
+		this.nextList = this.currentAlgorithm.nextStep(this.currentList);
+    }
+
+	/// <summary>
+	/// This method is called once per frame
+	/// </summary>
+    public void Update(){
+        //This is where we check for correct placement.
+        var nextMatch = this.checkMatch(this.nextList, this.unityArrayList);
+        var currentMatch = this.checkMatch(this.currentList, this.unityArrayList);
+
+        //If correct set currentList to nextList.  Set nextList to currentAlgorithm.nextStep();
+        if(nextMatch){
+			var temporary = this.currentList;
+			this.currentList = this.nextList;
+			this.nextList = this.currentAlgorithm.nextStep(temporary);
+        }
+        //Else if the order is not the currentList reset
+        else if(!currentMatch) {
+			this.unityArrayList = this.currentList;
+        }
+    }
+
+	/// <summary>
+	/// This method checks if ArrayListOne matches ArrayListTwo
+	/// </summary>
+	/// <returns><c>true</c>, if ArrayListOne == ArrayListTwo, <c>false</c> otherwise.</returns>
+	/// <param name="ArrayListOne">The first list to compare</param>
+	/// <param name="ArrayListTwo">The second list to compare</param>
+	public bool checkMatch(object[] ArrayListOne, object[] ArrayListTwo) {
+        //Check if the order of the list matches the nextList
+        var match = true;
+		if (ArrayListOne.Length == ArrayListTwo.Length) {
+			for (int i = 0; i < ArrayListOne.Length && match; i = i + 1) {
+				match = ((SortingPanel)ArrayListOne [i]).GetValue () == ((SortingPanel)ArrayListTwo [i]).GetValue ();
+			}
+		} else {
+			match = false;
+		}
+        return match;
+    }
+
+	/// <summary>
+	/// This will change the unity list back to its last successful state
+	/// </summary>
+    public void revert() {
+        this.unityArrayList = this.currentList;
+    }
+
+	/// <summary>
+	/// This method will reset the unity list back to its original state
+	/// </summary>
+    public void reset() {
+        this.unityArrayList = this.nextList;
+    }
+}

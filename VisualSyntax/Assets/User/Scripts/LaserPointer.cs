@@ -46,7 +46,7 @@ public class LaserPointer : MonoBehaviour {
 		// See if the ray intersects with the world
 		if (Physics.Raycast (ray, out hit)) {
 			// Only set the indicator if the ray hits terrain. This prevents teleporting into the sky
-			if (hit.collider.name == "Terrain" && hitPos != hit.point) {
+			if (hit.collider.name != "indicator" && hitPos != hit.point) {
 				hitPos = hit.point;
 				indicator.transform.position = hitPos;
 			}

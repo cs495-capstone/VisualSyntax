@@ -1,0 +1,185 @@
+﻿using UnityEngine;
+using System.Collections.Generic;
+using VRTK;
+
+/// <summary>
+/// This class is used for the list sorting prefab found in the unity world
+/// </summary>
+public class SortingPanels : MonoBehaviour, ISortListener {
+
+	/// <summary>
+	/// This is the number of panels that will be created by default
+	/// </summary>
+	int numPanels = 5;
+
+	/// <summary>
+	/// This is a list of the panels used to check list sorting.
+	/// </summary>
+	SortingPanel[] panels;
+
+	/// <summary>
+	/// This is a boolean that will help us initialize the SortManager when all cubes 
+	/// are snapped in the first time.
+	/// </summary>
+	bool first;
+
+	/// <summary>
+	/// This counts the number of items currently "snapped" onto a panel.
+	/// </summary>
+	int snappedCount = 0;
+
+	///<summary>
+	/// This is the list of listeners waiting for all blocks to be on the panels
+	/// </summary>
+	List<IEventListener> listeners = new List<IEventListener>();
+
+	/// <summary>
+	/// This is a method used to initialize the class
+	/// </summary>
+	void Start () {
+		//Right now we setup 5 panels
+		panels = new SortingPanel[numPanels];
+		for (int i = 1; i <= panels.Length; i++) {
+			panels [i - 1] = GameObject.Find ("CubeSnap" + i).GetComponent<SortingPanel> ();
+			panels [i - 1].AddSortListener (this);
+		}
+		//First is true until the first time all boxes are clicked down.
+		this.first = true;
+	}
+
+	/// <summary>
+	/// This method is called once per frame, and we check our panel status 
+	/// each frame
+	/// </summary>
+	void Update () {
+		// if we have all panels snapped in the player either started or 
+		//made a move.
+		if (snappedCount >= numPanels) {
+			//If this is the first time then we initialize the SortManager
+			if (this.first) {
+			}
+		}
+	}
+
+	/// <summary>
+	/// Subscribe the specified subscriber.
+	/// </summary>
+	/// <param name="subscriber">Subscriber.</param>
+	public void Subscribe(IEventListener subscriber) { 
+		listeners.Add (subscriber);
+	}
+
+	/// <summary>
+	/// This method swaps two cubes on the different panels.
+	/// </summary>
+	/// <param name="a">The index a to swap</param>
+	/// <param name="b">The index b to swap</param>
+	public void Swap(int a, int b) {
+		GameObject objA = panels [a].connectedObject;
+		GameObject objB = panels [b].connectedObject;
+
+		Vector3 tmp = objA.transform.position;
+		objA.transform.position = objB.transform.position;
+		objB.transform.position = tmp;
+	}
+
+	/// <summary>
+	/// This method is called when a cube is snapped onto a panel.
+	/// </summary>
+	public void OnSnap() {
+		snappedCount++;
+		Debug.Log (snappedCount);
+	}
+
+	/// <summary>
+	/// This method is called when a cube is unsnapped from a panel.
+	/// </summary>
+	public void OnUnsnap() {
+		snappedCount--;
+		Debug.Log (snappedCount);
+	}
+
+
+
+	/// <summary>
+	/// This class is used for the individual panels in the SortingPanels
+	/// class.  They will hold reference to the cubes snapped on them.
+	/// </summary>
+	public class SortingPanel : MonoBehaviour {
+
+		/// <summary>
+		/// The connectedObject is the object snapped onto the panel.
+		/// </summary>
+		public GameObject connectedObject;
+
+		/// <summary>
+		/// This is the list of listeners 
+		/// </summary>
+		public ArrayList listeners = new ArrayList();
+
+		/// <summary>
+		/// This method is unused because panels wait on user interaction
+		/// </summary>
+		void Start () {
+		}
+
+		/// <summary>
+		/// This method updates every frame, but this class waits for 
+		/// user interaction and doesn't need it.
+		/// </summary>
+		void Update () {
+		}
+
+		/// <summary>
+		/// This method returns the value of the label of the block
+		///  snapped in, or -1 if no block is snapped in.
+		/// </summary>
+		/// <returns>The value.</returns>
+		public int GetValue() {
+			return connectedObject == null ? -1 : int.Parse (connectedObject.GetComponent<VroomObject> ().Label);
+		}
+
+		/// <summary>
+		/// This method is used to let all listeners of the panel
+		/// know an object has been snapped.  This is done
+		/// by calling the OnSnap of all listeners.
+		/// </summary>
+		/// <param name="obj">Object that is connected</param>
+		/// <param name="args">This is the arguments 
+		/// of what was snapped in</param>
+		public void ObjectConnected(object obj, SnapDropZoneEventArgs args) {
+			connectedObject = args.snappedObject;
+
+			foreach (var listener in listeners) {
+				((ISortListener)listener).OnSnap ();
+			}
+		}
+
+		/// <summary>
+		/// This is the method that alerts all listeners when
+		/// an object is disconnected from the panel, by
+		/// calling the OnUnsnap.
+		/// </summary>
+		/// <param name="obj">Object that was 
+		/// disconnected</param>
+		/// <param name="args">These are the arguments of
+		/// the object in the snapzone</param>
+		public void ObjectDisconnected(object obj, SnapDropZoneEventArgs args) {
+			connectedObject = null;
+
+			foreach (var listener in listeners) {
+				((ISortListener)listener).OnUnsnap ();
+			}
+		}
+
+		/// <summary>
+		/// This method allows someone to listen for the events
+		/// generated by this panel.
+		/// </summary>
+		/// <param name="listener">ISortListener to add.</param>
+		public void AddSortListener(ISortListener listener) {
+			listeners.Add (listener);
+		}
+	}
+
+}

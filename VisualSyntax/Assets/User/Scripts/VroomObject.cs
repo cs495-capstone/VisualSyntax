@@ -4,6 +4,11 @@ using System.Collections;
 public class VroomObject : MonoBehaviour {
 
 	/// <summary>
+	/// This is used for 180 degrees in calculations.
+	/// </summary>
+	private static float oneEighty = 180f;
+
+	/// <summary>
 	/// In reference mode, the objects within this object get pulled out and
 	/// lines are drawn to them.
 	/// </summary>
@@ -48,22 +53,33 @@ public class VroomObject : MonoBehaviour {
 	private LineRenderer linker;
 
 	/// <summary>
-	/// This is the text mesh linked to this object
+	/// This is the text mesh linked to this object.
 	/// </summary>
 	private GameObject myTextMesh;
 
+	/// <summary>
+	/// This is how we are handling the reference mode interaction (along with the gun).
+	/// </summary>
 	public delegate void RefModeEventHandler(object sender);
 	public event RefModeEventHandler OnReferenceModeActivated;
 	public event RefModeEventHandler OnReferenceModeDeactivated;
 
+	/// <summary>
+	/// This is the list of line renderers that will be used to draw
+	/// the references between objects and their fields.
+	/// </summary>
 	private ArrayList lineRenderers;
 
+	/// <summary>
+	/// This is a list of all object fields that will dislplay in reference mode
+	/// </summary
 	private ArrayList vroomChildren;
 
 	/// <summary>
 	/// Initializes the vroom object and all it's fields and event handlers.
 	/// </summary>
 	void Start () {
+		//initialize to null/empty and pull objects hidden in the game world
 		lineRenderers = new ArrayList ();
 		vroomChildren = new ArrayList ();
 		myTextMesh = null;
@@ -86,7 +102,8 @@ public class VroomObject : MonoBehaviour {
 		if (TopLevelObject) {
 			CreateTextMesh ();
 		}
-
+		// We add our functionality on at the end rather than override
+		// so we don't lose the functionality happening before us.
 		OnReferenceModeActivated += HandleRefModeActivate;
 		OnReferenceModeDeactivated += HandleRefModeDeactivate;
 	}
@@ -150,7 +167,7 @@ public class VroomObject : MonoBehaviour {
 	/// </summary>
 	/// <param name="sender">Sender.</param>
 	private void HandleRefModeActivate(object sender) {
-		var angle = 180f / (vroomChildren.Count);
+		var angle = oneEighty / (vroomChildren.Count);
 		for (int j = 0; j < vroomChildren.Count; j++) {
 			var child = (VroomObject) vroomChildren [j];
 			var linker = (LineRenderer)lineRenderers [j];
@@ -167,7 +184,9 @@ public class VroomObject : MonoBehaviour {
 		}
 	}
 
-	// Update is called once per frame
+	/// <summary>
+	/// Update is called once per frame
+	/// </summary>
 	void Update () {
 		if (ReferenceMode) {
 			if (!handledRefModeChange) {
@@ -184,12 +203,16 @@ public class VroomObject : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// This method is responsible for setting linkers between each object field and its parent.
+	/// </summary>
 	void UpdateLinkerPositions() {
 		for (int i = 0; i < vroomChildren.Count; i++) {
 			var child = (VroomObject) vroomChildren [i];
 			var linker = (LineRenderer) lineRenderers [i];
-
+			//parent side
 			linker.SetPosition (0, transform.position);
+			//child side
 			linker.SetPosition (1, child.gameObject.transform.position);
 		}
 	}
