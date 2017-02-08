@@ -15,5 +15,5 @@ public interface IAlgorithm {
 	/// <returns>The list at the next step.</returns>
 	/// <param name="currentList">Current list to
 	/// run the sort on.</param>
-	object[] nextStep(object[] currentList);
+	int[] nextStep(int[] currentList);
 }

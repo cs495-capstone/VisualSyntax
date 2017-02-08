@@ -135,6 +135,7 @@
      <Compile Include="Assets\User\Scripts\Sorting Game\PowerSwitch.cs" />
      <Compile Include="Assets\User\Scripts\Sorting Game\SelectionSort.cs" />
      <Compile Include="Assets\User\Scripts\Sorting Game\SortingGame.cs" />
+     <Compile Include="Assets\User\Scripts\Sorting Game\SortingGameEventArgs.cs" />
      <Compile Include="Assets\User\Scripts\Sorting Game\SortingManager.cs" />
      <Compile Include="Assets\User\Scripts\Sorting Game\SortingPanel.cs" />
      <Compile Include="Assets\User\Scripts\Sorting Game\SortingPanels.cs" />

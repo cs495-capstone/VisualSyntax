@@ -161,6 +161,12 @@ public class VroomObject : MonoBehaviour {
 		}
 	}
 
+	public void SetLabel(string label) {
+		DeleteTextMesh ();
+		this.Label = label;
+		CreateTextMesh ();
+	}
+
 	/// <summary>
 	/// Handles when reference mode is activated. It pulls out the children objects and enables 
 	/// their labels.

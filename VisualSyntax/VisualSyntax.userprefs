@@ -1,17 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\User\Scripts\Sorting Game\SortingPanels.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\User\Scripts\Sorting Game\SortingGame.cs">
     <Files>
-      <File FileName="Assets\User\Scripts\Sorting Game\SortingManager.cs" Line="72" Column="27" />
-      <File FileName="Assets\User\Scripts\Sorting Game\SortingGame.cs" Line="101" Column="21" />
-      <File FileName="Assets\User\Scripts\Sorting Game\StepButton.cs" Line="1" Column="14" />
-      <File FileName="Assets\User\Scripts\Sorting Game\ISortListener.cs" Line="1" Column="1" />
-      <File FileName="Assets\User\Scripts\Sorting Game\PowerSwitch.cs" Line="23" Column="9" />
-      <File FileName="Assets\User\Scripts\Sorting Game\GameSwitch.cs" Line="7" Column="3" />
-      <File FileName="Assets\User\Scripts\Sorting Game\IAlgorithm.cs" Line="1" Column="1" />
-      <File FileName="Assets\User\Scripts\Sorting Game\SelectionSort.cs" Line="1" Column="19" />
-      <File FileName="Assets\User\Scripts\Sorting Game\SortingPanels.cs" Line="59" Column="21" />
-      <File FileName="Assets\User\Scripts\Sorting Game\IEventListener.cs" Line="5" Column="2" />
+      <File FileName="Assets\User\Scripts\Sorting Game\SortingGame.cs" Line="31" Column="22" />
+      <File FileName="Assets\User\Scripts\Sorting Game\SortingManager.cs" Line="38" Column="16" />
+      <File FileName="Assets\User\Scripts\Sorting Game\SortingPanels.cs" Line="127" Column="2" />
+      <File FileName="Assets\User\Scripts\Sorting Game\IAlgorithm.cs" Line="15" Column="51" />
+      <File FileName="Assets\User\Scripts\Sorting Game\SelectionSort.cs" Line="33" Column="16" />
+      <File FileName="Assets\VRTK\Scripts\Abstractions\VRTK_WorldPointer.cs" Line="158" Column="1" />
+      <File FileName="Assets\User\Scripts\Sorting Game\PowerSwitch.cs" Line="11" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -24,21 +24,19 @@ public class SelectionSort : IAlgorithm {
 	/// </summary>
 	/// <returns>The list after the next step.</returns>
 	/// <param name="currentList">Current list.</param>
-	public object[] nextStep(object[] currentList) {
-		//Get a subset of the list that will be used to sort
-		var activeList = (new ArrayList(currentList)).GetRange (this.currentIndex, currentList.Length - this.currentIndex);
-		//smallest index is the smallest in our active list
-        int smallestIndex = 0;
-        for (int i = 0; i < activeList.Count; i = i + 1) {
-			var a = (int)(((SortingPanel)activeList [i]).GetValue());
-			var b = (int)(((SortingPanel)activeList [smallestIndex]).GetValue());
+	public int[] nextStep(int[] currentList) {
+		int smallestIndex = currentIndex;
+		for (int i = currentIndex + 1; i < currentList.Length; i = i + 1) {
+			var a = (int)(currentList[i]);
+			var b = (int)(currentList[smallestIndex]);
 
 			if (a < b) {
                 smallestIndex = i;
             }
         }
 		//swap the currentIndex and the new smallest.
-        swap(currentList,this.currentIndex, smallestIndex);
+		swap(currentList,smallestIndex, currentIndex);
+		this.currentIndex++;
 		return currentList;
     }
 
@@ -48,9 +46,9 @@ public class SelectionSort : IAlgorithm {
 	/// <param name="array">array to swap on.</param>
 	/// <param name="indexOne">Index one to swap.</param>
 	/// <param name="indexTwo">Index two to swap.</param>
-	public void swap(object[] array, int indexOne, int indexTwo) {
-        object temporary = array[indexOne];
+	public void swap(int[] array, int indexOne, int indexTwo) {
+		int temporary = array[indexOne];
         array[indexOne] = array[indexTwo];
-		array[indexTwo] = (UnityEngine.Object)temporary;
+		array[indexTwo] = temporary;
     }
 }

@@ -12,7 +12,7 @@ public class SortingPanel : MonoBehaviour {
 	/// The connectedObject is the object snapped onto the panel.
 	/// </summary>
 	public GameObject connectedObject;
-
+		
 	/// <summary>
 	/// This is the list of listeners 
 	/// </summary>
