@@ -123,6 +123,7 @@ namespace VRTK
         {
             base.OnEnable();
             controller.AliasPointerOn += new ControllerInteractionEventHandler(EnablePointerBeam);
+
             controller.AliasPointerOff += new ControllerInteractionEventHandler(DisablePointerBeam);
             controller.AliasPointerSet += new ControllerInteractionEventHandler(SetPointerDestination);
 

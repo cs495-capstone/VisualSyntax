@@ -25,6 +25,13 @@ public class RefGun : VRTK.VRTK_InteractableObject {
 	bool toggled = false;
 
 	/// <summary>
+	/// If the gun is cooling down
+	/// </summary>
+	bool coolDown = false;
+
+	float timeElapsed = 0;
+
+	/// <summary>
 	/// This method initializes the line renderer compenent
 	/// from the lineRenderer.
 	/// </summary>
@@ -59,31 +66,40 @@ public class RefGun : VRTK.VRTK_InteractableObject {
 	/// This is the method responsible for updating the laser.
 	/// </summary>
 	void updateLaser() {
-		//This is for our use in testing
-		Debug.Log ("Using the gun!");
-		//This is how we are checking if the laser hits an object.
-		RaycastHit outHit;
-		Ray outRay = new Ray (transform.position, transform.forward);
+		if (!coolDown) {
+			//This is for our use in testing
+			Debug.Log ("Using the gun!");
+			//This is how we are checking if the laser hits an object.
+			RaycastHit outHit;
+			Ray outRay = new Ray (transform.position, transform.forward);
 
-		//If we get a hit
-		if (Physics.Raycast (outRay, out outHit)) {
-			//We make sure the hit has a rigid body, and we have not already hit the object
-			if (outHit.rigidbody != null && !toggled) {
-				//JanIce is the name we originally gave objects containing objects
-				var janice = outHit.rigidbody.gameObject.GetComponent<VroomObject> ();
-				//We toggle referencemode on the VroomObject.
-				janice.ReferenceMode = !janice.ReferenceMode;
-				//Toggled is now true since we hit
-				toggled = true;
+			//If we get a hit
+			if (Physics.Raycast (outRay, out outHit)) {
+				//We make sure the hit has a rigid body, and we have not already hit the object
+				if (outHit.rigidbody != null && !toggled) {
+					//JanIce is the name we originally gave objects containing objects
+					var janice = outHit.rigidbody.gameObject.GetComponent<VroomObject> ();
+					//We toggle referencemode on the VroomObject.
+					janice.ReferenceMode = !janice.ReferenceMode;
+					//Toggled is now true since we hit
+					toggled = true;
+					coolDown = true;
+				}
+
+				// create a laser beam between our gun and what we are pointing at
+				lineRenderer_comp.SetPosition (0, transform.position);
+				lineRenderer_comp.SetPosition (1, outHit.point);
+				// If we aren't hitting anything then we must be pointing to the sky, so we disable
+				// the laser.
+			} else {
+				disableLaser ();
 			}
-
-			// create a laser beam between our gun and what we are pointing at
-			lineRenderer_comp.SetPosition (0, transform.position);
-			lineRenderer_comp.SetPosition (1, outHit.point);
-		// If we aren't hitting anything then we must be pointing to the sky, so we disable
-		// the laser.
 		} else {
-			disableLaser ();
+			timeElapsed += Time.deltaTime;
+			if (timeElapsed >= 3000) {
+				coolDown = false;
+				timeElapsed = 0;
+			}
 		}
 	}
 

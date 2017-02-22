@@ -9,6 +9,11 @@ public class SortingGame : MonoBehaviour, IEventListener
 	private PowerSwitch powerSwitch;
 	private StepButton stepButton;
 	private LightManager lightManager;
+	private AudioSource generatorNoise;
+	private AudioSource onNoise;
+	private AudioSource offNoise;
+	private AudioSource enableNoise;
+	private AudioSource stepNoise;
 
 	private State state;
 	private List<IEventListener> gameListeners;
@@ -19,14 +24,21 @@ public class SortingGame : MonoBehaviour, IEventListener
 		powerSwitch = GameObject.Find ("PowerSwitch").GetComponent<PowerSwitch>();
 		stepButton = GameObject.Find ("StepButton").GetComponent<StepButton>();
 		lightManager = GameObject.Find ("House").GetComponentInChildren<LightManager> ();
+		generatorNoise = GameObject.Find ("GeneratorSound").GetComponent<AudioSource> ();
+		onNoise = GameObject.Find ("OnSound").GetComponent<AudioSource> ();
+		offNoise = GameObject.Find ("OffSound").GetComponent<AudioSource> ();
+		enableNoise = GameObject.Find ("EnableSound").GetComponent<AudioSource> ();
+		stepNoise = GameObject.Find ("StepButtonSound").GetComponent<AudioSource> ();
 		panels.Subscribe (this);
 		stepButton.Subscribe (this);
 		powerSwitch.Subscribe (this);
+		lightManager.Subscribe (this);
 	}
 
 	void Update() {
 		switch (state) {
 		case State.DISABLED:
+			UnInitializePowerSwitch ();
 			break;
 		case State.OFF:
 			InitializePowerSwitch ();
@@ -53,7 +65,9 @@ public class SortingGame : MonoBehaviour, IEventListener
 			var targetPos = new Vector3 (wallPos.x, wallPos.y, -8.02f);
 			wall.transform.position = Vector3.MoveTowards (wallPos, targetPos, 0.5f * Time.deltaTime);
 
-			Debug.Log ("WE ARE DONEEEEE");
+			//Debug.Log ("WE ARE DONEEEEE");
+			break;
+		case State.DEAD:
 			break;
 		}
 	}
@@ -63,6 +77,16 @@ public class SortingGame : MonoBehaviour, IEventListener
 		if (!powerSwitch.IsEnabled()) {
 			Debug.Log("Enabling Power Switch...");
 			powerSwitch.Enable ();
+			enableNoise.Play ();
+		}
+	}
+
+	void UnInitializePowerSwitch() {
+		//Initialize powerswitch to enabled
+		if (powerSwitch.IsEnabled()) {
+			Debug.Log("Disabling Power Switch...");
+			powerSwitch.Disable ();
+			enableNoise.Play ();
 		}
 	}
 
@@ -75,7 +99,7 @@ public class SortingGame : MonoBehaviour, IEventListener
 
 	int[] GetShuffledList() {
 		int[] result = new int[panels.Count];
-		for (int i = 0; i < result.Length; i++) {
+		for (int i = result.Length - 1; i > 0; i--) {
 			result [i] = UnityEngine.Random.Range(0, 100);
 		}
 		Shuffle (result);
@@ -144,6 +168,8 @@ public class SortingGame : MonoBehaviour, IEventListener
 	void OnPowerSwitchOn() {
 		// [EVENT] Called when the power switch is flipped
 		Debug.Log("Power switch on, changing state to ON...");
+		onNoise.Play ();
+		generatorNoise.mute = false;
 		state = State.ON;
 		Debug.Log ("State = " + state);
 	}
@@ -154,6 +180,7 @@ public class SortingGame : MonoBehaviour, IEventListener
 			Debug.Log ("Button pressed, changing state to CHECK...");
 			state = State.CHECK;
 			Debug.Log ("State = " + state);
+			stepNoise.Play ();
 		}
 	}
 
@@ -184,10 +211,18 @@ public class SortingGame : MonoBehaviour, IEventListener
 			OnStepButtonPress ();
 		} else if (gameargs.Message == PowerSwitch.MSG_ON) {
 			OnPowerSwitchOn ();
+		} else if (gameargs.Message == LightManager.MSG_DEATH) {
+			OnDeath ();
 		}
 	}
 
+	void OnDeath() {
+		state = State.DEAD;
+		offNoise.Play ();
+		generatorNoise.mute = true;
+	}
+
 	enum State {
-		DISABLED, OFF, ON, WAIT, CHECK, DONE
+		DISABLED, OFF, ON, WAIT, CHECK, DONE, DEAD
 	}
 }

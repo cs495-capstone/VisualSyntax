@@ -7,8 +7,8 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Material
-  m_Shader: {fileID: 4800000, guid: 94025252f01f32444a985a7b13f29ac8, type: 3}
-  m_ShaderKeywords: _EMISSION
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _EMISSION _NORMALMAP
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -31,7 +31,7 @@ Material:
         name: _DetailAlbedoMap
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 1.08, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _DetailMask
@@ -49,7 +49,7 @@ Material:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 40, y: 40}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _Illum
@@ -61,7 +61,7 @@ Material:
         name: _MainTex
       second:
         m_Texture: {fileID: 2800000, guid: 2dd3788f8589b40bf82a92d76ffc5091, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 40, y: 40}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MetallicGlossMap
@@ -117,7 +117,7 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 0.5
+      second: 0
     - first:
         name: _GlossyReflections
       second: 1
@@ -193,7 +193,7 @@ Material:
       second: {r: 1, g: 1, b: -2, a: 3}
     - first:
         name: _Color
-      second: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+      second: {r: 0.9558824, g: 0.85757965, b: 0.681769, a: 1}
     - first:
         name: _ColorTint
       second: {r: 1, g: 1, b: 1, a: 1}

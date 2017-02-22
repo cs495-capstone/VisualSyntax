@@ -34,9 +34,19 @@ public class PowerSwitch : MonoBehaviour
 		if (_enabled == false) {
 			GetComponentInChildren<VRTK_Lever> ().gameObject.GetComponent<Rigidbody> ().freezeRotation = false;
 			var indicator = GameObject.Find ("PowerSwitchIndicator");
-			indicator.GetComponent<MeshRenderer> ().material.color = Color.green;
+			indicator.GetComponent<MeshRenderer> ().material.color = new Color(0,1,0,0.75F);
+
 		}
 		_enabled = true;
+	}
+
+	public void Disable() {
+		if (_enabled == true) {
+			GetComponentInChildren<VRTK_Lever> ().gameObject.GetComponent<Rigidbody> ().freezeRotation = true;
+			var indicator = GameObject.Find ("PowerSwitchIndicator");
+			indicator.GetComponent<MeshRenderer> ().material.color = new Color(1,1,1,0.25F);
+		}
+		_enabled = false;
 	}
 
 	public bool IsEnabled() {

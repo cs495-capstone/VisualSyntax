@@ -1,0 +1,325 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Door_Material
+  m_Shader: {fileID: 4800000, guid: 4c81ed1c512a84e4285b39eaab006f91, type: 3}
+  m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP
+  m_LightmapFlags: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+    - first:
+        name: _AO
+      second:
+        m_Texture: {fileID: 2800000, guid: 20f926a3c63a082458f56932342f0057, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _AmbientOcclusion
+      second:
+        m_Texture: {fileID: 2800000, guid: 20f926a3c63a082458f56932342f0057, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _BloodBaseColor
+      second:
+        m_Texture: {fileID: 2800000, guid: d448ea0a0f0d78540a2ac67ec4d5379a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _BloodDissolve
+      second:
+        m_Texture: {fileID: 2800000, guid: 6d5922d8e587b454eaf7d8008d5c3714, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _BloodFlowBump
+      second:
+        m_Texture: {fileID: 2800000, guid: ee9920021a95396439b3c9114e19c931, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _BloodMask
+      second:
+        m_Texture: {fileID: 2800000, guid: 38854b35c209b4244b0b7ae5a45fd712, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _BloodMetallic
+      second:
+        m_Texture: {fileID: 2800000, guid: 6c60c509a339c844a9cf76eec4dab7ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _BloodNormal
+      second:
+        m_Texture: {fileID: 2800000, guid: 00c8728830b9ecc4489b870d58029ff3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _BloodTexture
+      second:
+        m_Texture: {fileID: 2800000, guid: d448ea0a0f0d78540a2ac67ec4d5379a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Blood_Metallic
+      second:
+        m_Texture: {fileID: 2800000, guid: 6c60c509a339c844a9cf76eec4dab7ca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Blood_bumb
+      second:
+        m_Texture: {fileID: 2800000, guid: 00c8728830b9ecc4489b870d58029ff3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Blood_tex
+      second:
+        m_Texture: {fileID: 2800000, guid: d448ea0a0f0d78540a2ac67ec4d5379a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _BumpMap
+      second:
+        m_Texture: {fileID: 2800000, guid: c1e218135b6bbbd40b93c2efb8779f0f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailAlbedoMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailMask
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _DetailNormalMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Dissolve
+      second:
+        m_Texture: {fileID: 2800000, guid: 9309741f5f1a53843baef3b8b21d419e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _EmissionMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MainTex
+      second:
+        m_Texture: {fileID: 2800000, guid: bf2f6975384b36f46aab98297423bf91, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MainTextureMetallic
+      second:
+        m_Texture: {fileID: 2800000, guid: 3adb6b8b842e06c49850f56df61cb2c3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Metallic
+      second:
+        m_Texture: {fileID: 2800000, guid: 3adb6b8b842e06c49850f56df61cb2c3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MetallicGlossMap
+      second:
+        m_Texture: {fileID: 2800000, guid: 3adb6b8b842e06c49850f56df61cb2c3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Occlusion
+      second:
+        m_Texture: {fileID: 2800000, guid: 20f926a3c63a082458f56932342f0057, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _OcclusionMap
+      second:
+        m_Texture: {fileID: 2800000, guid: 320bc137dbd190e48b2f37e837d881a6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _ParallaxMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _SecondaryBloodBump
+      second:
+        m_Texture: {fileID: 2800000, guid: ee9920021a95396439b3c9114e19c931, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _blood_bumpflow
+      second:
+        m_Texture: {fileID: 2800000, guid: b811a3c771ca671449d132afcf5e70bb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _metallic
+      second:
+        m_Texture: {fileID: 2800000, guid: 3adb6b8b842e06c49850f56df61cb2c3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _node_4530
+      second:
+        m_Texture: {fileID: 2800000, guid: f46738534ed57354896dd60eec603c7e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _node_5768
+      second:
+        m_Texture: {fileID: 2800000, guid: f46738534ed57354896dd60eec603c7e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _node_6593
+      second:
+        m_Texture: {fileID: 2800000, guid: ee9920021a95396439b3c9114e19c931, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _node_6969
+      second:
+        m_Texture: {fileID: -58753049, guid: c5a83ae5a60d3d549bbb337974adb553, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _node_8776
+      second:
+        m_Texture: {fileID: 2800000, guid: 99e6094521937fc4e94ec15dc842f709, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _node_9564
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _routhness
+      second:
+        m_Texture: {fileID: 2800000, guid: d878867a84d213f4c8f73d3c42bc7d5e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - first:
+        name: PixelSnap
+      second: 0
+    - first:
+        name: _AmbientOcclusionStrength
+      second: 1
+    - first:
+        name: _BloodAmount
+      second: 0
+    - first:
+        name: _Blood_FlowIntensity
+      second: 1
+    - first:
+        name: _BulgeShape
+      second: 1
+    - first:
+        name: _BumpScale
+      second: 1
+    - first:
+        name: _Cutoff
+      second: 0.5
+    - first:
+        name: _DetailNormalMapScale
+      second: 1
+    - first:
+        name: _DstBlend
+      second: 0
+    - first:
+        name: _GlossMapScale
+      second: 1
+    - first:
+        name: _Glossiness
+      second: 0.5
+    - first:
+        name: _GlossyReflections
+      second: 1
+    - first:
+        name: _Metallic
+      second: 0
+    - first:
+        name: _Mode
+      second: 0
+    - first:
+        name: _OcclusionStrength
+      second: 1
+    - first:
+        name: _Parallax
+      second: 0.02
+    - first:
+        name: _SmoothnessTextureChannel
+      second: 0
+    - first:
+        name: _SpecularHighlights
+      second: 1
+    - first:
+        name: _SrcBlend
+      second: 1
+    - first:
+        name: _UVSec
+      second: 0
+    - first:
+        name: _ZWrite
+      second: 1
+    - first:
+        name: _blood_vis
+      second: 0
+    - first:
+        name: _node_192
+      second: 1
+    - first:
+        name: _node_7298
+      second: 1
+    - first:
+        name: _node_7662
+      second: 0
+    - first:
+        name: _node_879
+      second: 0
+    - first:
+        name: _norminten
+      second: 0
+    m_Colors:
+    - first:
+        name: _Color
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _Color_Bloof
+      second: {r: 0.309, g: 0, b: 0, a: 1}
+    - first:
+        name: _Color_Multi
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _Color_copy
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _EmissionColor
+      second: {r: 0, g: 0, b: 0, a: 1}

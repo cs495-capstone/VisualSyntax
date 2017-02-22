@@ -19,6 +19,7 @@ public class LifeLight : MonoBehaviour
 				connectedLight.intensity = 0f;
 			}
 		}
+		if (!on) GetComponentInChildren<AudioSource> ().Play ();
 	}
 }
 

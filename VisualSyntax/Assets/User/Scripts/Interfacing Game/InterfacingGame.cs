@@ -3,6 +3,8 @@ using System.Collections;
 
 public class InterfacingGame : MonoBehaviour {
 
+	public const string MSG_INTERACTED = "MSG_INTERACTED";
+
 	// Use this for initialization
 	void Start () {
 	
@@ -11,5 +13,8 @@ public class InterfacingGame : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	enum State {
 	}
 }

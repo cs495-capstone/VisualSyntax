@@ -11,6 +11,12 @@ TagManager:
   - Rubber
   - BuddyBot
   - HUD
+  - VRTK_Tag
+  - SortingPanel
+  - Cubes
+  - ExcludeTeleport
+  - Keys
+  - StaticType
   layers:
   - Default
   - TransparentFX

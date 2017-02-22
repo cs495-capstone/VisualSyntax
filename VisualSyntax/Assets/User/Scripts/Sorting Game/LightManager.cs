@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class LightManager : MonoBehaviour
 {
-	public readonly string MSG_DEATH = "LIGHTSOUT";
+	public const string MSG_DEATH = "LIGHTSOUT";
 
 	private LifeLight[] lights;
 
@@ -27,8 +27,9 @@ public class LightManager : MonoBehaviour
 		if (currentLight < numLights) {
 			lights [currentLight].LightStatus (false);
 			currentLight++;
-		} else {
-			Broadcast (MSG_DEATH);
+			if (currentLight >= lights.Length) {
+				Broadcast (MSG_DEATH);
+			}
 		}
 	}
 
