@@ -16,4 +16,6 @@ public interface IAlgorithm {
 	/// <param name="currentList">Current list to
 	/// run the sort on.</param>
 	int[] nextStep(int[] currentList);
+
+	bool IsDone();
 }

@@ -1,18 +1,24 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\User\Scripts\Sorting Game\SortingGame.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\User\Scripts\Sorting Game\LifeLight.cs">
     <Files>
-      <File FileName="Assets\User\Scripts\Sorting Game\SortingGame.cs" Line="31" Column="22" />
-      <File FileName="Assets\User\Scripts\Sorting Game\SortingManager.cs" Line="38" Column="16" />
-      <File FileName="Assets\User\Scripts\Sorting Game\SortingPanels.cs" Line="127" Column="2" />
-      <File FileName="Assets\User\Scripts\Sorting Game\IAlgorithm.cs" Line="15" Column="51" />
-      <File FileName="Assets\User\Scripts\Sorting Game\SelectionSort.cs" Line="33" Column="16" />
-      <File FileName="Assets\VRTK\Scripts\Abstractions\VRTK_WorldPointer.cs" Line="158" Column="1" />
-      <File FileName="Assets\User\Scripts\Sorting Game\PowerSwitch.cs" Line="11" Column="1" />
+      <File FileName="Assets\User\Scripts\Sorting Game\PowerSwitch.cs" Line="1" Column="1" />
+      <File FileName="Assets\VRTK\Scripts\Controls\3D\VRTK_Lever.cs" Line="1" Column="1" />
+      <File FileName="Assets\VRTK\Scripts\Abstractions\VRTK_WorldPointer.cs" Line="1" Column="1" />
+      <File FileName="Assets\User\Scripts\Sorting Game\SortingGame.cs" Line="21" Column="66" />
+      <File FileName="Assets\VRTK\Examples\Resources\Scripts\ControlReactor.cs" Line="1" Column="1" />
+      <File FileName="Assets\User\Scripts\Sorting Game\SelectionSort.cs" Line="1" Column="1" />
+      <File FileName="Assets\User\Scripts\Sorting Game\SortingPanels.cs" Line="1" Column="1" />
+      <File FileName="Assets\User\Scripts\Interfacing Game\Interfacer.cs" Line="22" Column="14" />
+      <File FileName="Assets\User\Scripts\Sorting Game\SortingManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\User\Scripts\Interfacing Game\Interfacable.cs" Line="18" Column="25" />
+      <File FileName="Assets\User\Scripts\Sorting Game\LifeLight.cs" Line="24" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="C:\Users\ambenavente1\VisualSyntax\VisualSyntax\Assets\User\Scripts\Sorting Game\SortingManager.cs" line="100" column="26" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

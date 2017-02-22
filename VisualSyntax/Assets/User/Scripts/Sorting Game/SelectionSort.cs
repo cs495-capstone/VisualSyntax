@@ -12,6 +12,11 @@ public class SelectionSort : IAlgorithm {
     private int currentIndex;
 
 	/// <summary>
+	/// If the sort algorithm has walked through every step.
+	/// </summary>
+	private bool isDone;
+
+	/// <summary>
 	/// Initializes a new instance of the <see cref="SelectionSort"/> class.
 	/// </summary>
     public SelectionSort() {
@@ -26,17 +31,25 @@ public class SelectionSort : IAlgorithm {
 	/// <param name="currentList">Current list.</param>
 	public int[] nextStep(int[] currentList) {
 		int smallestIndex = currentIndex;
-		for (int i = currentIndex + 1; i < currentList.Length; i = i + 1) {
-			var a = (int)(currentList[i]);
-			var b = (int)(currentList[smallestIndex]);
 
-			if (a < b) {
-                smallestIndex = i;
-            }
-        }
-		//swap the currentIndex and the new smallest.
-		swap(currentList,smallestIndex, currentIndex);
-		this.currentIndex++;
+		if (!isDone) {
+			for (int i = currentIndex + 1; i < currentList.Length; i = i + 1) {
+				var a = (int)(currentList [i]);
+				var b = (int)(currentList [smallestIndex]);
+
+				if (a < b) {
+					smallestIndex = i;
+				}
+			}
+			//swap the currentIndex and the new smallest.
+			swap (currentList, smallestIndex, currentIndex);
+			this.currentIndex++;
+
+			if (currentIndex >= currentList.Length) {
+				isDone = true;
+			}
+		}
+
 		return currentList;
     }
 
@@ -51,4 +64,8 @@ public class SelectionSort : IAlgorithm {
         array[indexOne] = array[indexTwo];
 		array[indexTwo] = temporary;
     }
+
+	public bool IsDone() {
+		return isDone;
+	}
 }

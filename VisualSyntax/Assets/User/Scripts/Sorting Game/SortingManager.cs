@@ -41,11 +41,11 @@ public class SortingManager {
 	/// <summary>
 	/// This method is called once per frame
 	/// </summary>
-    public void Update(){
+    public bool Update(){
         //This is where we check for correct placement.
         var nextMatch = this.checkMatch(this.nextList, this.unityArrayList);
         var currentMatch = this.checkMatch(this.currentList, this.unityArrayList);
-
+		var progress = true;
         //If correct set currentList to nextList.  Set nextList to currentAlgorithm.nextStep();
         if(nextMatch){
 			var temporary = this.currentList;
@@ -54,8 +54,9 @@ public class SortingManager {
         }
         //Else if the order is not the currentList reset
         else if(!currentMatch) {
-			this.unityArrayList = this.currentList;
+			progress = false;
         }
+		return progress;
     }
 
 	/// <summary>
@@ -93,5 +94,9 @@ public class SortingManager {
 
 	public void SetCurrentList(int[] array) {
 		unityArrayList = array;
+	}
+
+	public bool IsDone() {
+		return currentAlgorithm.IsDone ();
 	}
 }

@@ -8,6 +8,7 @@ public class SortingGame : MonoBehaviour, IEventListener
 	private SortingManager sortingManager;
 	private PowerSwitch powerSwitch;
 	private StepButton stepButton;
+	private LightManager lightManager;
 
 	private State state;
 	private List<IEventListener> gameListeners;
@@ -17,8 +18,10 @@ public class SortingGame : MonoBehaviour, IEventListener
 		panels = GameObject.Find ("SortedPanels").GetComponent<SortingPanels>();
 		powerSwitch = GameObject.Find ("PowerSwitch").GetComponent<PowerSwitch>();
 		stepButton = GameObject.Find ("StepButton").GetComponent<StepButton>();
+		lightManager = GameObject.Find ("House").GetComponentInChildren<LightManager> ();
 		panels.Subscribe (this);
 		stepButton.Subscribe (this);
+		powerSwitch.Subscribe (this);
 	}
 
 	void Update() {
@@ -42,9 +45,15 @@ public class SortingGame : MonoBehaviour, IEventListener
 			break;
 		case State.CHECK:
 			CheckList ();
-			state = State.WAIT;
 			break;
 		case State.DONE:
+
+			var wall = GameObject.Find ("Revealing Wall");
+			var wallPos = wall.transform.position;
+			var targetPos = new Vector3 (wallPos.x, wallPos.y, -8.02f);
+			wall.transform.position = Vector3.MoveTowards (wallPos, targetPos, 0.5f * Time.deltaTime);
+
+			Debug.Log ("WE ARE DONEEEEE");
 			break;
 		}
 	}
@@ -108,8 +117,20 @@ public class SortingGame : MonoBehaviour, IEventListener
 		// Calls the sorting manager's check function
 		Debug.Log("Checking List...");
 
+		// -1.215
+		// -8.02
+
 		sortingManager.SetCurrentList (panels.GetValues ());
-		sortingManager.Update ();
+		var progressed = sortingManager.Update ();
+		if (!progressed) { 
+			lightManager.RemoveLight();
+		}
+
+		if (sortingManager.IsDone ()) {
+			state = State.DONE;
+		} else {
+			state = State.WAIT;
+		}
 	}
 
 	void TriggerGameComplete() {
@@ -129,9 +150,11 @@ public class SortingGame : MonoBehaviour, IEventListener
 
 	void OnStepButtonPress() {
 		// [EVENT] Called when step button is pushed
-		Debug.Log("Button pressed, changing state to CHECK...");
-		state = State.CHECK;
-		Debug.Log ("State = " + state);
+		if (state == State.WAIT) {
+			Debug.Log ("Button pressed, changing state to CHECK...");
+			state = State.CHECK;
+			Debug.Log ("State = " + state);
+		}
 	}
 
 	void OnBlocksLockedIn() {
@@ -159,6 +182,8 @@ public class SortingGame : MonoBehaviour, IEventListener
 			OnBlocksUnLocked ();
 		} else if (gameargs.Message == stepButton.MSG_BUTTONPUSHED) {
 			OnStepButtonPress ();
+		} else if (gameargs.Message == PowerSwitch.MSG_ON) {
+			OnPowerSwitchOn ();
 		}
 	}
 
