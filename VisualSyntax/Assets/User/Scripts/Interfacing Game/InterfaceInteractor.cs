@@ -6,11 +6,10 @@ public class InterfaceInteractor : MonoBehaviour {
 
 	public string TargetName;
 
-	private List<IEventListener> interactListeners;
+	private List<IEventListener> interactListeners = new List<IEventListener>();
 
 	// Use this for initialization
 	void Start () {
-		interactListeners = new List<IEventListener> ();
 	}
 	
 	// Update is called once per frame
@@ -20,9 +19,9 @@ public class InterfaceInteractor : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collision) {
 		var obj = collision.gameObject;
-		var objInterface = obj.GetComponent<Interfacable> ();
+		var objInterface = obj.GetComponent<StaticType> ();
 		if (objInterface != null) {
-			var name = objInterface.MetaInfo.Name;
+			var name = objInterface.Name;
 			if (name == TargetName) {
 				OnTargetEnter ();
 			}

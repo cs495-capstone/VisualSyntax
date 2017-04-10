@@ -162,9 +162,9 @@ public class VroomObject : MonoBehaviour {
 	}
 
 	public void SetLabel(string label) {
-		DeleteTextMesh ();
+		//DeleteTextMesh ();
 		this.Label = label;
-		CreateTextMesh ();
+		//CreateTextMesh ();
 	}
 
 	/// <summary>

@@ -17,6 +17,7 @@ TagManager:
   - ExcludeTeleport
   - Keys
   - StaticType
+  - DynamicType
   layers:
   - Default
   - TransparentFX

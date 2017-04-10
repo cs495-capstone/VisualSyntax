@@ -62,7 +62,7 @@ public class CloneGun : VRTK.VRTK_InteractableObject {
 		} else {
 			disableLaser ();
 			timeElapsed += Time.deltaTime;
-			if (timeElapsed >= 0) {
+			if (timeElapsed >= 1) {
 				coolDown = false;
 				timeElapsed = 0;
 			}
@@ -87,7 +87,7 @@ public class CloneGun : VRTK.VRTK_InteractableObject {
 				//JanIce is the name we originally gave objects containing objects
 				var toClone = outHit.rigidbody.gameObject.GetComponent<Cloneable> ();
 				if (toClone.enabled) {
-					toClone.Clone (false);
+					toClone.Clone (true);
 					coolDown = true;
 				}
 			}

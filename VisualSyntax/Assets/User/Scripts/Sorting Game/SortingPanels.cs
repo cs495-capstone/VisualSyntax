@@ -121,6 +121,9 @@ public class SortingPanels : MonoBehaviour, ISortListener {
 		for (int i = 0; i < values.Length; i++) {
 			var panel = panels [i];
 			panel.connectedObject.GetComponent<VroomObject> ().SetLabel ("" + values [i]);
+			panel.connectedObject.GetComponentInChildren<VRTK_ObjectTooltip> ().containerColor = new Color (0, 0.8f, 0);
+			panel.connectedObject.GetComponentInChildren<VRTK_ObjectTooltip> ().containerSize = new Vector2 (70, 30);
+			panel.connectedObject.GetComponentInChildren<VRTK_ObjectTooltip> ().UpdateText ("" + values [i]);
 		}
 	}
 

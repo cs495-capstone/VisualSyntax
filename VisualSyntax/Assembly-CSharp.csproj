@@ -126,7 +126,9 @@
      <Compile Include="Assets\User\Scripts\Cloning\CloneEventArgs.cs" />
      <Compile Include="Assets\User\Scripts\Cloning\CloneGun.cs" />
      <Compile Include="Assets\User\Scripts\Cloning\Cloneable.cs" />
+     <Compile Include="Assets\User\Scripts\Cloning\DynamicType.cs" />
      <Compile Include="Assets\User\Scripts\Cloning\ShallowClone.cs" />
+     <Compile Include="Assets\User\Scripts\Cloning\StaticType.cs" />
      <Compile Include="Assets\User\Scripts\Interfacing Game\DoorMover.cs" />
      <Compile Include="Assets\User\Scripts\Interfacing Game\Interfacable.cs" />
      <Compile Include="Assets\User\Scripts\Interfacing Game\InterfaceInfo.cs" />
