@@ -17,5 +17,9 @@ public interface IAlgorithm {
 	/// run the sort on.</param>
 	int[] nextStep(int[] currentList);
 
+	/// <summary>
+	/// This method will return if the algorthim has completed.
+	/// </summary>
+	/// <returns><c>true</c> if this instance is done; otherwise, <c>false</c>.</returns>
 	bool IsDone();
 }

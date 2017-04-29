@@ -98,10 +98,10 @@ namespace VRTK
         private GameObject highlightObject;
         private GameObject highlightEditorObject = null;
         private GameObject currentValidSnapObject = null;
-        private GameObject currentSnappedObject = null;
+        public GameObject currentSnappedObject = null; // Made public for debugging A&D
         private VRTK_BaseHighlighter objectHighlighter;
         private bool willSnap = false;
-        private bool isSnapped = false;
+        public bool isSnapped = false; // Made public for debugging A&D
         private bool isHighlighted = false;
         private Coroutine transitionInPlace;
         private bool originalJointCollisionState = false;
@@ -386,7 +386,7 @@ namespace VRTK
             }
         }
 
-        private void SnapObject(Collider collider)
+        public void SnapObject(Collider collider)
         {
             var ioCheck = ValidSnapObject(collider.gameObject, false);
             //If the item is in a snappable position and this drop zone isn't snapped and the collider is a valid interactable object

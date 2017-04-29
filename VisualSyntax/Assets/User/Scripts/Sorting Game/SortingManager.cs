@@ -92,10 +92,18 @@ public class SortingManager {
         this.unityArrayList = this.nextList;
     }
 
+	/// <summary>
+	/// This method sets the array equal to the one provided.
+	/// </summary>
+	/// <param name="array">Array.</param>
 	public void SetCurrentList(int[] array) {
 		unityArrayList = array;
 	}
 
+	/// <summary>
+	/// This method checks to see if an algorthim is complete
+	/// </summary>
+	/// <returns><c>true</c> if this algorithm is done is done <c>true</c>; otherwise, <c>false</c>.</returns>
 	public bool IsDone() {
 		return currentAlgorithm.IsDone ();
 	}

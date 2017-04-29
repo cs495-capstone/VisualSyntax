@@ -11,11 +11,17 @@ public class StepButton : MonoBehaviour
 	/// </summary>
 	List<IEventListener> listeners = new List<IEventListener>();
 
+	/// <summary>
+	/// This method is called on Unity start and adds a listener.
+	/// </summary>
 	private void Start()
 	{
 		GetComponent<VRTK_Button>().events.OnPush.AddListener(handlePush);
 	}
 
+	/// <summary>
+	/// This function handles the pushing for the button.
+	/// </summary>
 	private void handlePush()
 	{
 		Debug.Log("Step Button Pushed");

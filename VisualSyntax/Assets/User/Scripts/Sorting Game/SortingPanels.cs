@@ -8,8 +8,14 @@ using VRTK;
 /// </summary>
 public class SortingPanels : MonoBehaviour, ISortListener {
 
+	/// <summary>
+	/// This message is sent when the object is initialized.
+	/// </summary>
 	public readonly string MSG_INITIALIZED = "INITIALIZED";
 
+	/// <summary>
+	/// This message is sent when the object is uninitialized.
+	/// </summary>
 	public readonly string MSG_UNITIALIZED = "UNINITIALIZED";
 
 	/// <summary>
@@ -107,6 +113,10 @@ public class SortingPanels : MonoBehaviour, ISortListener {
 		Debug.Log (snappedCount);
 	}
 
+	/// <summary>
+	/// This method returns an integer array holding the values of the sorting panels.
+	/// </summary>
+	/// <returns>The values.</returns>
 	public int[] GetValues() {
 		var result = new int[panels.Length];
 
@@ -117,6 +127,10 @@ public class SortingPanels : MonoBehaviour, ISortListener {
 		return result;
 	}
 
+	/// <summary>
+	/// This method is used to intialize the sorting panels.
+	/// </summary>
+	/// <param name="values">Values.</param>
 	public void InitializePanels(int[] values) {
 		for (int i = 0; i < values.Length; i++) {
 			var panel = panels [i];
@@ -127,6 +141,10 @@ public class SortingPanels : MonoBehaviour, ISortListener {
 		}
 	}
 
+	/// <summary>
+	/// This method gets the array of panels.
+	/// </summary>
+	/// <returns>The panels.</returns>
 	public SortingPanel[] GetPanels() {
 		return panels;
 	}

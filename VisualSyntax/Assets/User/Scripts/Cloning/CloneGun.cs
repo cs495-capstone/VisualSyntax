@@ -86,8 +86,8 @@ public class CloneGun : VRTK.VRTK_InteractableObject {
 			if (outHit.rigidbody != null && !toggled) {
 				//JanIce is the name we originally gave objects containing objects
 				var toClone = outHit.rigidbody.gameObject.GetComponent<Cloneable> ();
-				if (toClone.enabled) {
-					toClone.Clone (true);
+				if (toClone != null && toClone.enabled) {
+					toClone.Clone (name.Contains("Shallow"));
 					coolDown = true;
 				}
 			}

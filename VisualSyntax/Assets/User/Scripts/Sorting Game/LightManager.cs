@@ -1,14 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+
+/// <summary>
+/// This class manages all the lights in a room.
+/// </summary>
 public class LightManager : MonoBehaviour
 {
+	/// <summary>
+	/// This is the message used to signal death, or game off.
+	/// </summary>
 	public const string MSG_DEATH = "LIGHTSOUT";
 
+	/// <summary>
+	/// The lights in the room.
+	/// </summary>
 	private LifeLight[] lights;
 
+
+	/// <summary>
+	/// The light currently being used.
+	/// </summary>
 	private int currentLight;
 
+	/// <summary>
+	/// The number of lights in the room.
+	/// </summary>
 	private int numLights;
 
 	///<summary>
@@ -16,6 +33,9 @@ public class LightManager : MonoBehaviour
 	/// </summary>
 	List<IEventListener> listeners = new List<IEventListener>();
 
+	/// <summary>
+	/// This method is used to initialize the list of lights.
+	/// </summary>
 	void Start () {
 		//Right now we setup 5 panels
 		lights = GetComponentsInChildren<LifeLight>();
@@ -23,6 +43,9 @@ public class LightManager : MonoBehaviour
 		numLights = lights.Length;
 	}
 
+	/// <summary>
+	/// This method is used to cut off a light.
+	/// </summary>
 	public void RemoveLight() {
 		if (currentLight < numLights) {
 			lights [currentLight].LightStatus (false);

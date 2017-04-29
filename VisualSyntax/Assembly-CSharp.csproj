@@ -140,8 +140,6 @@
      <Compile Include="Assets\User\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\User\Scripts\RefGun.cs" />
      <Compile Include="Assets\User\Scripts\SelfieStick.cs" />
-     <Compile Include="Assets\User\Scripts\Sorting Game\GameButton_Reactor.cs" />
-     <Compile Include="Assets\User\Scripts\Sorting Game\GameSwitch.cs" />
      <Compile Include="Assets\User\Scripts\Sorting Game\IAlgorithm.cs" />
      <Compile Include="Assets\User\Scripts\Sorting Game\IEventListener.cs" />
      <Compile Include="Assets\User\Scripts\Sorting Game\ISortListener.cs" />

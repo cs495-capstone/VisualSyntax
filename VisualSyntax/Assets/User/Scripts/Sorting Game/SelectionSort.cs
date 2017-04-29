@@ -65,6 +65,10 @@ public class SelectionSort : IAlgorithm {
 		array[indexTwo] = temporary;
     }
 
+	/// <summary>
+	/// This method allows external objects to know when an algorthim is complete.
+	/// </summary>
+	/// <returns><c>true</c> if this instance is done; otherwise, <c>false</c>.</returns>
 	public bool IsDone() {
 		return isDone;
 	}
